@@ -1,0 +1,63 @@
+/* navbar.css */
+
+/* Navbar container */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    color: white;
+  }
+  
+  /* Logo image */
+  .logo-img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  /* Navbar links */
+  .navbar-links {
+    display: flex;
+  }
+  
+  .navbar-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s;
+  }
+  
+  .navbar-links a:hover {
+    color: cyan;
+  }
+  
+  /* Profile dropdown */
+  .profile-dropdown {
+    position: relative;
+  }
+  
+  .profile-dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    padding: 10px;
+    display: none;
+  }
+  
+  .profile-dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .profile-dropdown .dropdown-menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+  }
+  
+  .profile-dropdown .dropdown-menu a:hover {
+    background-color: #555;
+  }
+  
