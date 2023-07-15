@@ -6,15 +6,19 @@ import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Content from '../../components/Content/Content';
+import Footer from '../../components/Footer/Footer';
+
 import { SidebarContext } from '../../context/SidebarContext';
 import { useContext } from 'react';
 import { CContainer } from '@coreui/react';
+
+
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
   const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -47,21 +51,14 @@ const Home = () => {
     <div >
       {loggedIn ? (
         <div >
-
-          <Navbar className="navbar" />
+          <Sidebar />
           <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-            {
-              sidebarOpen &&
-              <Sidebar className="sidebar" />
-
-            }
-
-            <div className="body px-3">
-              <CContainer lg >
-
-
-                afdoadsfiasodfhofnafahoiasfafdoadsfiasodfhofnafahoiasfafdoadsfiasodfhofnafahoiasf
-              </CContainer>
+            <Navbar/>
+            <div className="body flex-grow-1 px-3">
+              <Content/>
+            </div>
+            <div>
+              <Footer/>
             </div>
           </div>
         </div>

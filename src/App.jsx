@@ -11,6 +11,7 @@ import Home from './pages/HomePage/Home.jsx';
 import { SidebarProvider } from './context/SidebarContext';
 
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

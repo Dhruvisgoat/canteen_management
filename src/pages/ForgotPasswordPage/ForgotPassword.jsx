@@ -18,7 +18,7 @@ const ForgotPassword = () => {
       await sendPasswordResetEmail(auth, email);
       setSuccessMessage('Password reset email sent. Please check your inbox.');
       setErrorMessage('');
-      navigate('/mycomponent'); // Redirect to the login page
+      navigate('/'); // Redirect to the login page
     } catch (error) {
       setErrorMessage(error.message);
       setSuccessMessage('');

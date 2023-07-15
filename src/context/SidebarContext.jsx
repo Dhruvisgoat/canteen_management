@@ -7,6 +7,7 @@ export const SidebarProvider = ({ children }) => {
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+    console.log(sidebarOpen);
   };
 
   return (

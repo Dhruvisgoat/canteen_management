@@ -12,9 +12,12 @@ import {
     CDropdownToggle,
     CDropdownMenu,
     CDropdownItem,
+    CNavbarBrand,
+
 } from '@coreui/react';
 
 import { useContext } from 'react';
+
 
 import CIcon from '@coreui/icons-react';
 import { cilUser, cilSettings, cilMenu } from '@coreui/icons';
@@ -30,11 +33,10 @@ import { SidebarContext } from '../../context/SidebarContext';//
 
 
 function Navbar() {
-    const [visible, setVisible] = useState(false);
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
     const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
-
+    
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -48,6 +50,7 @@ function Navbar() {
             unsubscribe();
         };
     }, []);
+
 
     const handleLogout = async () => {
         try {
@@ -63,21 +66,21 @@ function Navbar() {
     return (
         <CHeader position="sticky" >
             <CContainer fluid >
-                <CHeaderToggler className="ps-1" onClick={toggleSidebar}>
-                    <CIcon icon={cilMenu} size="lg" />
+                <CHeaderToggler
+                    className="ps-1"
+                    onClick={toggleSidebar}>
+                    <img src={logo} style={{ height: '30px', width: '30px' }} />
                 </CHeaderToggler>
 
-                <CHeaderBrand className="mx-auto d-md-none" to="/">
-                    <CIcon icon={logo} height={48} alt="Logo" />
+                <CHeaderBrand className="d-md-none">
+                    Ericsson
                 </CHeaderBrand>
+
                 <CHeaderNav className="d-none d-md-flex me-auto">
                     <CNavItem>
                         <CNavLink to="/dashboard" >
                             Dashboard
                         </CNavLink>
-                    </CNavItem>
-                    <CNavItem>
-                        <CNavLink href="#">Users</CNavLink>
                     </CNavItem>
                     <CNavItem>
                         <CNavLink href="#">Settings</CNavLink>
@@ -98,7 +101,7 @@ function Navbar() {
                         </CDropdownMenu>
                     </CDropdown>
                 </CHeaderNav>
-                
+
             </CContainer>
         </CHeader>
     )
