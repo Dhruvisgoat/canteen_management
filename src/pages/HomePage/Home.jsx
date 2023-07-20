@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { CButton } from '@coreui/react';
-import { signOut, getAuth } from 'firebase/auth';
 import { auth } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import Content from '../../components/Content/Content';
+import AppContent from '../../components/Content/Appcontent';
 import Footer from '../../components/Footer/Footer';
 
-import { SidebarContext } from '../../context/SidebarContext';
-import { useContext } from 'react';
-import { CContainer } from '@coreui/react';
+
+
 
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
-  const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -36,29 +33,18 @@ const Home = () => {
     };
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      console.log('User logged out');
-      // Perform any additional logout actions if needed
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <div >
       {loggedIn ? (
         <div >
           <Sidebar />
           <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-            <Navbar/>
+            <Navbar />
             <div className="body flex-grow-1 px-3">
-              <Content/>
+              <AppContent />
             </div>
             <div>
-              <Footer/>
+              <Footer />
             </div>
           </div>
         </div>

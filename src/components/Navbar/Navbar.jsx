@@ -36,7 +36,7 @@ function Navbar() {
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
     const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
-    
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -69,7 +69,7 @@ function Navbar() {
                 <CHeaderToggler
                     className="ps-1"
                     onClick={toggleSidebar}>
-                    <img src={logo} style={{ height: '30px', width: '30px' }} />
+                    <CIcon icon={cilMenu} size="lg" />
                 </CHeaderToggler>
 
                 <CHeaderBrand className="d-md-none">

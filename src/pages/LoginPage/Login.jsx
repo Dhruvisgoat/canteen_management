@@ -24,6 +24,11 @@ const MyLogin = () => {
     }
   };
 
+  const handleOtp =()=> {
+    console.log('otp');
+    navigate('/otp');
+  }
+
   const handleSuccessfulLogin = () => {
     navigate('/'); // Redirect the user to the login page
   };
@@ -77,6 +82,9 @@ const MyLogin = () => {
                     <CButton color="light" className="mt-2" onClick={handleGoogleLogin}>
                       <img src={googleLogo} alt="Google Logo" className="google-logo" style={{ height: '20px', marginRight: '8px' }} />
                       Google
+                    </CButton>
+                    <CButton color="light" className="mt-2 mx-2" onClick={handleOtp}>
+                      Via Otp
                     </CButton>
                     <div className='mt-3'>
                       New User <Link to="/register">Register here</Link>

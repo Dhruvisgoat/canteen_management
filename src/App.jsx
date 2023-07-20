@@ -8,9 +8,19 @@ import './scss/style.scss';
 import Register from './pages/RegisterPage/Register';
 import ForgotPassword from './pages/ForgotPasswordPage/ForgotPassword';
 import Home from './pages/HomePage/Home.jsx';
+import Dashboard from './views/Dashboard/Dashboard';
 import { SidebarProvider } from './context/SidebarContext';
+import { Suspense } from 'react';
+import { CSpinner } from '@coreui/react';
+import './scss/style.scss'
+import Otp from './pages/Otp/Otp';
 
-
+const loading = (
+  <div className="pt-3 text-center">
+    <div className="sk-spinner sk-spinner-pulse"></div>
+  </div>
+  
+)
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,19 +42,26 @@ function App() {
   }, []);
 
   if (isLoading) {
-    // Show a loading spinner or component while checking the authentication status
-    return <div>Loading...</div>;
+    return (
+      <div className="pt-3 text-center">
+        <div className="sk-spinner sk-spinner-pulse">Loading...</div>
+      </div>
+    )
   }
 
   return (
     <Router>
       <SidebarProvider>
-        <Routes>
-          <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgotPassword" element={<ForgotPassword />} />
-          <Route path="/Home" element={<Home />} />
-        </Routes>
+        <Suspense fallback={loading}>
+          <Routes>
+            <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgotPassword" element={<ForgotPassword />} />
+            <Route path="/home/*" element={<Home/>} />
+            <Route path="/otp" element={<Otp />} />
+            <Route path="*" element={<div>error</div>} />
+          </Routes>
+        </Suspense>
       </SidebarProvider>
     </Router>
   );
