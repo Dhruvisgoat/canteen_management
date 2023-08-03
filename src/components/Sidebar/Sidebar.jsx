@@ -17,14 +17,14 @@ import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/ericsson_full_logo_dark.png';
 
-const Sidebar = () => {
-  const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
+const Sidebar = ({toggleSidebar}) => {
+  // const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
   const navigate = useNavigate();
 
   return (
     <CSidebar
       position="fixed"
-      visible={sidebarOpen}
+      visible={toggleSidebar}
       className='c-sidebar'
     >
       <CSidebarBrand>

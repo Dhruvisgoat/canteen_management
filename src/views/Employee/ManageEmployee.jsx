@@ -28,13 +28,16 @@ const ManageEmployee = () => {
   };
 
   const handleDelete = async (id) => {
-    try {
-      const docRef = doc(db, 'Employee', id);
-      await deleteDoc(docRef);
-      console.log('Employee deleted.');
-      getEmployeeList();
-    } catch (error) {
-      console.error('Error deleting employee:', error);
+    const confirmed = window.confirm('Are you sure you want to delete this employee?');
+    if (confirmed) {
+      try {
+        const docRef = doc(db, 'Employee', id);
+        await deleteDoc(docRef);
+        console.log('Employee deleted.');
+        getEmployeeList();
+      } catch (error) {
+        console.error('Error deleting employee:', error);
+      }
     }
   };
 
@@ -104,36 +107,47 @@ const ManageEmployee = () => {
             <CTableRow key={employee.id}>
               <CTableDataCell>
                 {isEditing && editingEmployeeId === employee.id ? (
-                  <CButton
-                    color="danger"
-                    size="sm"
-                    className="mr-2 mb-1"
-                    style={{ width: '100%' }}
-                    onClick={handleSave}
-                  >
-                    Save
-                  </CButton>
+                  <>
+                    <CButton
+                      color="success"
+                      size="sm"
+                      className="mr-2 mb-1"
+                      style={{ width: '100%' }}
+                      onClick={handleSave}
+                    >
+                      Save
+                    </CButton>
+                    <CButton
+                      color="primary"
+                      className="mr-2"
+                      style={{ width: '100%' }}
+                      size="sm"
+                      onClick={handleCancel}
+                    >
+                      Cancel
+                    </CButton>
+                  </>
                 ) : (
-                  <CButton
-                    color="info"
-                    size="sm"
-                    style={{ width: '100%' }}
-                    className="mr-2"
-                    onClick={() => handleCellClick(employee.id, employee.name, employee.email, employee.sex, employee.age, employee.address)}
-                  >
-                    Edit
-                  </CButton>
-                )}
-                {isEditing && editingEmployeeId === employee.id && (
-                  <CButton
-                    color="primary"
-                    className="mr-2"
-                    style={{ width: '100%' }}
-                    size="sm"
-                    onClick={handleCancel}
-                  >
-                    Cancel
-                  </CButton>
+                  <>
+                    <CButton
+                      color="info"
+                      size="sm"
+                      style={{ width: '100%' }}
+                      className="mr-2 mb-2"
+                      onClick={() => handleCellClick(employee.id, employee.name, employee.email, employee.sex, employee.age, employee.address)}
+                    >
+                      Edit
+                    </CButton>
+                    <CButton
+                      color="danger"
+                      className="mr-2"
+                      style={{ width: '100%' }}
+                      size="sm"
+                      onClick={() => handleDelete(employee.id)}
+                    >
+                      Delete
+                    </CButton>
+                  </>
                 )}
               </CTableDataCell>
               <CTableDataCell>{employee.employee_id}</CTableDataCell>

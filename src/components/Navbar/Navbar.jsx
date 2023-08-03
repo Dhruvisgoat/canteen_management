@@ -12,13 +12,10 @@ import {
     CDropdownToggle,
     CDropdownMenu,
     CDropdownItem,
-    CNavbarBrand,
-
+    CNavbarBrand
 } from '@coreui/react';
 
 import { useContext } from 'react';
-
-
 import CIcon from '@coreui/icons-react';
 import { cilUser, cilSettings, cilMenu } from '@coreui/icons';
 import './Navbar.css';
@@ -32,10 +29,10 @@ import Sidebar from '../Sidebar/Sidebar';
 import { SidebarContext } from '../../context/SidebarContext';//
 
 
-function Navbar() {
+function Navbar({setToggleSidebar,toggleSidebar}) {
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
-    const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
+    // const { sidebarOpen, toggleSidebar } = useContext(SidebarContext);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -62,13 +59,16 @@ function Navbar() {
             console.log(error);
         }
     };
+    const handleSettings = () => {  
+        navigate('/home/settings');
+    };
 
     return (
         <CHeader position="sticky" >
             <CContainer fluid >
                 <CHeaderToggler
                     className="ps-1"
-                    onClick={toggleSidebar}>
+                    onClick={() => setToggleSidebar(!toggleSidebar)}>
                     <CIcon icon={cilMenu} size="lg" />
                 </CHeaderToggler>
 
@@ -95,13 +95,12 @@ function Navbar() {
                         </CDropdownToggle>
                         <CDropdownMenu>
                             <CDropdownItem>Profile</CDropdownItem>
-                            <CDropdownItem>Settings</CDropdownItem>
+                            <CDropdownItem onClick={handleSettings}>Settings</CDropdownItem>
                             <CDropdownItem>Messages</CDropdownItem>
                             <CDropdownItem onClick={handleLogout} >Logout</CDropdownItem>
                         </CDropdownMenu>
                     </CDropdown>
                 </CHeaderNav>
-
             </CContainer>
         </CHeader>
     )

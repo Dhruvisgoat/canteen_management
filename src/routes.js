@@ -1,35 +1,34 @@
-import React from 'react'
+import React from 'react';
 
-// const Customer = React.lazy(() => import('./views/Customer/Customer'))
-import Dashboard from './views/Dashboard/Dashboard'
-import AddCustomer from './views/Customer/AddCustomer'
-import ManageCustomer from './views/Customer/ManageCustomer'
-import AddEmployee from './views/Employee/AddEmployee'
-import ManageEmployee from './views/Employee/ManageEmployee'
-import AddCategory from './views/Category/AddCategory'
-import ManageCategory from './views/Category/ManageCategory'
-import AddFood from './views/Food/AddFood'
-import ManageFood from './views/Food/ManageFood'
-import AddInvoice from './views/Invoice/AddInvoice'
-import ManageInvoice from './views/Invoice/ManageInvoice'
-import Reports from './views/Reports/Reports'
-import Settings from './views/Settings/Settings'
-
+// Code-splitting: Dynamically import components using React.lazy
+const Dashboard = React.lazy(() => import('./views/Dashboard/Dashboard'));
+const AddCustomer = React.lazy(() => import('./views/Customer/AddCustomer'));
+const ManageCustomer = React.lazy(() => import('./views/Customer/ManageCustomer'));
+const AddEmployee = React.lazy(() => import('./views/Employee/AddEmployee'));
+const ManageEmployee = React.lazy(() => import('./views/Employee/ManageEmployee'));
+const AddCategory = React.lazy(() => import('./views/Category/AddCategory'));
+const ManageCategory = React.lazy(() => import('./views/Category/ManageCategory'));
+const AddFood = React.lazy(() => import('./views/Food/AddFood'));
+const ManageFood = React.lazy(() => import('./views/Food/ManageFood'));
+const AddInvoice = React.lazy(() => import('./views/Invoice/AddInvoice'));
+const ManageInvoice = React.lazy(() => import('./views/Invoice/ManageInvoice'));
+const Reports = React.lazy(() => import('./views/Reports/Reports'));
+const Settings = React.lazy(() => import('./views/Settings/Settings'));
 
 const routes = [
-    { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-    { path: '/addCustomer', name: 'addCustomer', element: AddCustomer },
-    { path: '/manageCustomer', name: 'manageCustomer', element: ManageCustomer },
-    { path: '/manageEmployee', name: 'manageEmployee', element: ManageEmployee },
-    { path: '/addEmployee', name: 'addEmployee', element: AddEmployee },
-    { path: '/addCategory', name: 'addCategory', element: AddCategory },
-    { path: '/manageCategory', name: 'addCustomer', element: ManageCategory },
-    { path: '/addFood', name: 'addFood', element: AddFood },
-    { path: '/manageFood', name: 'manageFood', element: ManageFood },
-    { path: '/addInvoice', name: 'addInvoice', element: AddInvoice },
-    { path: '/manageInvoice', name: 'manageInvoice', element: ManageInvoice },
-    { path: '/reports', name: 'reports', element: Reports },
-    { path: '/settings', name: 'Settings', element: Settings }
-]
+  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/addCustomer', name: 'AddCustomer', element: AddCustomer },
+  { path: '/manageCustomer', name: 'ManageCustomer', element: ManageCustomer },
+  { path: '/manageEmployee', name: 'ManageEmployee', element: ManageEmployee },
+  { path: '/addEmployee', name: 'AddEmployee', element: AddEmployee },
+  { path: '/addCategory', name: 'AddCategory', element: AddCategory },
+  { path: '/manageCategory', name: 'ManageCategory', element: ManageCategory },
+  { path: '/addFood', name: 'AddFood', element: AddFood },
+  { path: '/manageFood', name: 'ManageFood', element: ManageFood },
+  { path: '/addInvoice', name: 'AddInvoice', element: AddInvoice },
+  { path: '/manageInvoice', name: 'ManageInvoice', element: ManageInvoice },
+  { path: '/reports', name: 'Reports', element: Reports },
+  { path: '/settings', name: 'Settings', element: Settings },
+];
 
-export default routes
+export default routes;

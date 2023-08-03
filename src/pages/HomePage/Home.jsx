@@ -9,9 +9,6 @@ import AppContent from '../../components/Content/Appcontent';
 import Footer from '../../components/Footer/Footer';
 
 
-
-
-
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -33,13 +30,15 @@ const Home = () => {
     };
   }, []);
 
+  const [ toggleSidebar, setToggleSidebar] = useState(false);
+
   return (
     <div >
       {loggedIn ? (
         <div >
-          <Sidebar />
+          <Sidebar toggleSidebar={toggleSidebar}  />
           <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-            <Navbar />
+            <Navbar setToggleSidebar={setToggleSidebar} toggleSidebar={toggleSidebar} />
             <div className="body flex-grow-1 px-3">
               <AppContent />
             </div>
